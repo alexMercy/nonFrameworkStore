@@ -1,0 +1,40 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --animation: .3s all ease-in-out;
+  --bg: #dadada;
+}
+
+.dark_mode {
+  --bg: #525252;
+}
+
+[data-layout=header] {
+  height: 2rem;
+  background: #9bc98a;
+  padding: 2rem;
+  border-radius: 0 0 30px 30px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  transition: .3s background-color ease-in-out;;
+}
+
+button {
+  background: var(--bg);
+  transition: var(--animation);
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
