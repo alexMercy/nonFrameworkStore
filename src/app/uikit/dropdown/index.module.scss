@@ -1,0 +1,52 @@
+:root {
+  --height: 0;
+  --buttonh-height: 20px;
+  --border-radius: 5px;
+}
+.container {
+  position: relative;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.button {
+  background-color: var(--bg);
+  height: 20px;
+  line-height: 20px;
+  border-radius: var(--border-radius);
+  transition: .5s border-radius ease-out;
+}
+
+.buttonHover {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.items {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  transition: .3s height ease-in-out;
+  overflow: hidden;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  height: var(--height);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+  & > li {
+    background: var(--bg);
+    filter: brightness(95%);
+    padding: 0 10px;
+    list-style-type: none;
+    transition: .3s all ease-in-out;
+    &:hover {
+      filter: brightness(80%);
+    }
+  }
+}
+
+.expand {
+  --height: 42px;
+}

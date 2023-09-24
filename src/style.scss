@@ -10,10 +10,12 @@
   -webkit-text-size-adjust: 100%;
   --animation: .3s all ease-in-out;
   --bg: #dadada;
+  --text: black;
 }
 
 .dark_mode {
-  --bg: #525252;
+  --bg: #444444;
+  --text: white;
 }
 
 [data-layout=header] {
@@ -29,11 +31,11 @@
 body {
   margin: 0;
   background: var(--bg);
-  transition: .3s background-color ease-in-out;;
+  color: var(--text);
+  transition: .3s background-color ease-in-out, .9s color ease-in-out;
 }
 
 button {
-  background: var(--bg);
   transition: var(--animation);
 }
 
