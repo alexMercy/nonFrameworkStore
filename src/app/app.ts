@@ -65,7 +65,7 @@ export class App extends Component {
     }
 }
 
-const getConvertedRoutes = () => {
+export const getConvertedRoutes = () => {
     const rec = (routes: Route[], baseURL='', parent?: Route) => {
         const res:{path: string, component: (root: HTMLElement)=> void, parent: any}[] = [];
 
@@ -77,6 +77,10 @@ const getConvertedRoutes = () => {
 
         return res;
     }
-    return rec(routes);
+    const convertedRoutes = rec(routes);
+    const convPaths = convertedRoutes.map(({path}) => path);
+    return convPaths.length === new Set(convPaths).size
+        ? convertedRoutes
+        : console.error("Duplicate Routes");
 
 }

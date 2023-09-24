@@ -24,10 +24,9 @@ export const routes: Route[] = [
         ],
     },
     {
-        path: '/home/:id',
+        path: '/home/:id/:id2',
         component: (root: HTMLElement) => {
             new IdPage(root).render()
         }
     },
-
 ]
