@@ -1,17 +1,18 @@
 import {Component} from "../core/abstract.ts";
 import {Elements} from "../../utils/getElements.ts";
+import {useParams} from "../../utils/useParams.ts";
 
-export class HomePage extends Component {
-    protected elements: Elements = {};
+export class IdPage extends Component {
+    protected elements!: Elements;
     protected readonly root: HTMLElement;
-
+    params = useParams();
     constructor(root: HTMLElement) {
         super();
         this.root = root;
     }
 
     render(): void {
-        this.root.innerHTML = `home works!<section data-outlet></section>`
+        console.log(this.params);
     }
 
 }

@@ -1,18 +1,11 @@
 import {ELEMENT_KEYS, Elements, getElements} from "../utils/getElements.ts";
 import {Component} from "./core/abstract.ts";
-import {t} from "../lang";
 import {Header} from "./components/header.ts";
-import {routes} from "./routes.ts";
+import {Route, routes} from "./routes.ts";
 
 const template = `
-    <section data-layout="header">
-        <button data-button="theme">${t('Toggle theme')}</button>
-          <button data-button="lang">${t('Toggle language')}</button>
-          <button data-button="home">${t('Home')}</button>
-          <button data-button="page2">${t('Page 2')}</button>
-          <button data-button="back">${t('Back')}</button>
-    </section>
-    <section data-layout="content"></section>
+    <section data-layout="header"></section>
+    <section data-outlet></section>
 `
 
 
@@ -29,61 +22,61 @@ export class App extends Component {
     render() {
         this.root.innerHTML = template;
         this.elements[ELEMENT_KEYS.layout] = getElements(this.root, ELEMENT_KEYS.layout);
-        this.elements[ELEMENT_KEYS.button] = getElements(this.root, ELEMENT_KEYS.button);
         this.mountComponents();
         this.addEventListeners();
-        this.onPopState()
+        window.dispatchEvent(new Event('popstate'));
     }
 
 
     mountComponents() {
         const {header} = this.elements[ELEMENT_KEYS.layout];
-        new Header(header);
+        new Header(header).render();
     }
 
     addEventListeners() {
-        const {theme, lang, home, page2, back} = this.elements[ELEMENT_KEYS.button];
-        theme.addEventListener('click', this.toggleTheme);
-        lang.addEventListener('click', this.toggleLang)
-        home.addEventListener('click', this.goToHome)
-        back.addEventListener('click', this.goBack)
-        page2.addEventListener('click', this.goToEmpty)
         window.addEventListener('popstate', this.onPopState)
-    }
-
-
-    goToHome = () => {
-        history.pushState({}, '', '/home');
-        window.dispatchEvent(new Event('popstate'));
-    }
-    goToEmpty = () => {
-        history.pushState({}, '', '/page2');
-        window.dispatchEvent(new Event('popstate'));
-    }
-    goBack = () => {
-        history.back();
-    }
-
-    toggleTheme = () => {
-        document.body.classList.toggle('dark_mode');
-        localStorage.getItem('theme') === 'dark'
-            ? localStorage.setItem('theme', 'light')
-            : localStorage.setItem('theme', 'dark')
-    }
-
-    toggleLang = () => {
-        const lang = localStorage.getItem('lang')!;
-        localStorage.setItem('lang', lang === 'en' ? 'ru' : 'en');
-        location.reload();
     }
 
     onPopState = () => {
         const path = window.location.pathname;
-        console.log(path)
-        const {content} = this.elements[ELEMENT_KEYS.layout];
-        const route = routes.find(route => route.path === path);
-        route
-            ? route.component(content)
-            : console.error('Unknown route');
+
+        const convertedRoutes = getConvertedRoutes();
+        const outlet: HTMLElement = this.root.querySelector('[data-outlet]')!;
+
+        const route = convertedRoutes.find(route => {
+            const re =
+            `^${(route.path)
+                .replace(/(\/?)\*/g, "($1.*)?")
+                .replace(/\/$/, "")
+                .replace(/:(\w+)(\?)?(\.)?/g, "$2(?<$1>[^/$3]+)$2$3")
+                .replace(/\.\(/g, "\\.(")}/*$`
+
+            return path.match(new RegExp(re))
+        })
+
+        const rec = (route: any, outlet: HTMLElement): HTMLElement => {
+            const childOutlet = route.parent ? rec(route.parent, outlet) as HTMLElement : outlet;
+            route.component(childOutlet);
+            return outlet.querySelector('[data-outlet]')!
+        }
+
+        route ? rec(route,outlet) : console.error("Route Undefined")
+
     }
+}
+
+const getConvertedRoutes = () => {
+    const rec = (routes: Route[], baseURL='', parent?: Route) => {
+        const res:{path: string, component: (root: HTMLElement)=> void, parent: any}[] = [];
+
+        routes.forEach(route => {
+            const {path, component, childs} = route;
+            res.push({path:`${baseURL}${path}`,component, parent});
+            childs && res.push(...rec(childs,path,  route))
+        })
+
+        return res;
+    }
+    return rec(routes);
+
 }
