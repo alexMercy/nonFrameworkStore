@@ -5,9 +5,10 @@ export type Elements = {
 }
 
 export enum ELEMENT_KEYS {
-    element = 'element',
     button = 'button',
-    layout = 'layout'
+    layout = 'layout',
+    select = 'select',
+    lang = 'lang',
 }
 
 export const getElements = (root: HTMLElement, key: string) => {

@@ -1,0 +1,46 @@
+:root {
+  --height: 0;
+  --buttonh-height: 20px;
+}
+
+
+.expand {
+  --height: 50px
+}
+
+.lpb {
+  background-color: red;
+  height: 20px;
+  line-height: 20px;
+}
+
+.lp {
+  width: 100%;
+  position: absolute;
+  top: 20px;
+  transition: .3s height ease-in-out;
+  overflow: hidden;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  height: var(--height);
+
+  & > li {
+    background: white;
+    padding: 0 10px;
+    list-style-type: none;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+    &:hover {
+      color: red;
+      filter: brightness(95%);
+    }
+  }
+}
+
+.container {
+  position: relative;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+}

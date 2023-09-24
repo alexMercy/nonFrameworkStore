@@ -3,6 +3,7 @@
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
+  font-size: 14px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,9 +17,12 @@
 }
 
 [data-layout=header] {
-  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 48px;
   background: #9bc98a;
-  padding: 2rem;
   border-radius: 0 0 30px 30px;
 }
 

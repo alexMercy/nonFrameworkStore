@@ -1,6 +1,6 @@
 import {Component} from "../core/abstract.ts";
 import {Elements} from "../../utils/getElements.ts";
-import {useParams} from "../../utils/useParams.ts";
+import {useParams} from "../core/useParams.ts";
 
 export class IdPage extends Component {
     protected elements!: Elements;
