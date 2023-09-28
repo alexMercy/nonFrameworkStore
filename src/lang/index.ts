@@ -14,4 +14,6 @@ export const translateData: { [k: string]: [string] } = {
   'Language': ['Язык'],
   'English': ['Английский'],
   'Russian': ['Русский'],
+  'Pizza': ['Пицца'],
+  'Sushi': ['Суши']
 };

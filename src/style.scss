@@ -11,6 +11,7 @@
   --animation: .3s all ease-in-out;
   --bg: #dadada;
   --text: black;
+  --header-height: 48px;
 }
 
 .dark_mode {
@@ -18,18 +19,21 @@
   --text: white;
 }
 
+
+
 [data-layout=header] {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 48px;
+  height: var(--header-height);
   background: #9bc98a;
   border-radius: 0 0 30px 30px;
 }
 
 body {
   margin: 0;
+  height: 100%;
   background: var(--bg);
   color: var(--text);
   transition: .3s background-color ease-in-out, .9s color ease-in-out;
@@ -41,6 +45,15 @@ button {
 
 #app {
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
   text-align: center;
+
+  & [data-outlet] {
+    height: calc(100% - var(--header-height));
+  }
+}
+
+html {
+  height: 100%;
 }

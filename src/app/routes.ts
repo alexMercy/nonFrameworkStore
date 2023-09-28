@@ -1,6 +1,5 @@
-import { HomePage } from './pages/HomePage.ts';
-import { Page2 } from './pages/Page2.ts';
-import { IdPage } from './pages/IdPage.ts';
+import { HomePage } from './pages/HomePage';
+import { PizzasPage } from './pages/PizzasPage.ts';
 
 export type Route = {
   path: string;
@@ -19,19 +18,17 @@ export const routes: Route[] = [
     component: root => {
       new HomePage(root).render();
     },
-    childs: [
-      {
-        path: '/page2',
-        component: (root: HTMLElement) => {
-          new Page2(root).render();
-        },
-      },
-    ],
   },
   {
-    path: '/home/:id/:id2',
+    path: '/pizza',
     component: (root: HTMLElement) => {
-      new IdPage(root).render();
+      new PizzasPage(root).render();
+    },
+  },
+  {
+    path: '/sushi',
+    component: (root: HTMLElement) => {
+      new PizzasPage(root).render();
     },
   },
 ];

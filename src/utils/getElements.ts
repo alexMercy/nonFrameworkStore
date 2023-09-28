@@ -14,7 +14,7 @@ export enum ELEMENT_KEYS {
 }
 
 export const getElements = (root: HTMLElement, key: string) => {
-  const obj = {};
+  const obj: { [l: string]: HTMLElement } = {};
   [...root.querySelectorAll(`[data-${key}]`)].forEach(element => {
     // @ts-ignore
     obj[element.dataset[key]] = element;

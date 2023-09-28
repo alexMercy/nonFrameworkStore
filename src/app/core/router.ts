@@ -66,7 +66,6 @@ export class Router {
     //TODO: Update router
     const rec = (route: any, outlet: HTMLElement): HTMLElement => {
       const childOutlet = route.parent ? (rec(route.parent, outlet) as HTMLElement) : outlet;
-
       if (route.redirectTo && !route.parent) {
         const redirectRoute = routes.find(r => r.path === route.redirectTo);
         if (redirectRoute) {
