@@ -1,6 +1,6 @@
 import { Component } from '../../core/abstract.ts';
 import { Elements, getElements } from '../../../utils/getElements.ts';
-import { t } from '../../../lang';
+import { t } from '../../../translations';
 import { Tile } from '../../uikit/tile';
 import { createEntity, store } from '../../../store/core';
 import s from './index.module.scss';
@@ -28,6 +28,7 @@ export class HomePage extends Component {
   render(): void {
     this.root.innerHTML = this.template;
     this.elements['op'] = getElements(this.root, 'op');
+    console.log(this.elements.op);
     store['tileMenu'] = createEntity(menu);
     this.addListeners();
     this.mountComponents();

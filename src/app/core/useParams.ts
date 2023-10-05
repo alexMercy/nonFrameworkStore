@@ -6,7 +6,10 @@ export const useParams = () => {
   const { pathname } = window.location;
   let params = {};
 
-  convRoutes.forEach(({ path }) => (params = pathname.match(regExpRoutesMatcher(path))?.groups || {}));
+  convRoutes.forEach(({ path }) => {
+    const param = pathname.match(regExpRoutesMatcher(path))?.groups;
+    params = { ...params, ...param };
+  });
 
   return params;
 };

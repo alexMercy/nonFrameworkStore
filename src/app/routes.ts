@@ -1,5 +1,6 @@
 import { HomePage } from './pages/HomePage';
 import { PizzasPage } from './pages/PizzasPage.ts';
+import { PizzaPage } from './pages/PizzaPage';
 
 export type Route = {
   path: string;
@@ -23,6 +24,12 @@ export const routes: Route[] = [
     path: '/pizza',
     component: (root: HTMLElement) => {
       new PizzasPage(root).render();
+    },
+  },
+  {
+    path: '/pizza/:id',
+    component: root => {
+      new PizzaPage(root).render();
     },
   },
   {

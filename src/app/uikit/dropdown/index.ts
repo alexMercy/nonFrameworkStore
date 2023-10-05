@@ -1,6 +1,6 @@
 import { Component } from '../../core/abstract.ts';
 import { ELEMENT_KEYS, Elements, getElements } from '../../../utils/getElements.ts';
-import { t } from '../../../lang';
+import { t } from '../../../translations';
 import defStyles from './index.module.scss';
 
 export type Option = {

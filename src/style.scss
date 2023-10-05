@@ -1,59 +1,41 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 800;
+  letter-spacing: 2px;
   font-synthesis: none;
   font-size: 14px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  --animation: .3s all ease-in-out;
+  --animation: .5s ease-in-out;
+  --animation-text: color .3s ease-in-out;
+  --body: white;
   --bg: #dadada;
+  --block-bg: white;
   --text: black;
-  --header-height: 48px;
+  --header-height: 64px;
+  --outlet-padding: 30px;
+  --brightness: 90%;
 }
 
 .dark_mode {
-  --bg: #444444;
+  --body: black;
+  --block-bg: #333333;
+  --bg: #222222;
   --text: white;
+  --brightness: 110%;
+
 }
 
-
-
-[data-layout=header] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: var(--header-height);
-  background: #9bc98a;
-  border-radius: 0 0 30px 30px;
-}
 
 body {
   margin: 0;
   height: 100%;
-  background: var(--bg);
   color: var(--text);
-  transition: .3s background-color ease-in-out, .9s color ease-in-out;
 }
 
-button {
-  transition: var(--animation);
-}
-
-#app {
-  max-width: 1280px;
-  height: 100%;
-  margin: 0 auto;
-  text-align: center;
-
-  & [data-outlet] {
-    height: calc(100% - var(--header-height));
-  }
-}
-
-html {
+html, #app {
   height: 100%;
 }

@@ -11,6 +11,7 @@ export enum ELEMENT_KEYS {
   lang = 'lang',
   component = 'component',
   element = 'element',
+  pizza = 'pizza',
 }
 
 export const getElements = (root: HTMLElement, key: string) => {

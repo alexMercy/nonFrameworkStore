@@ -1,6 +1,6 @@
 import { Component } from '../core/abstract.ts';
 import { ELEMENT_KEYS, Elements, getElements } from '../../utils/getElements.ts';
-import { LANGUAGES, t } from '../../lang';
+import { LANGUAGES, t } from '../../translations';
 import { Dropdown, Option } from '../uikit/dropdown';
 import style from './header.module.scss';
 import { store } from '../../store/core';

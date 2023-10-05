@@ -2,10 +2,16 @@ import { ELEMENT_KEYS, Elements, getElements } from '../utils/getElements.ts';
 import { Component } from './core/abstract.ts';
 import { Header } from './components/header.ts';
 import { Router } from './core/router.ts';
+import styles from './styles.module.scss';
 
 const template = `
-    <section data-layout="header"></section>
-    <section data-outlet></section>
+  <div class='${styles.container}'>
+      <div class='${styles.root}'>
+        <section class='${styles.header}' data-layout="header"></section>
+        <section class='${styles.outlet}' data-outlet></section>
+      </div>
+  </div>
+    
 `;
 
 export class App extends Component {

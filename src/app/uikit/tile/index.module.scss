@@ -1,13 +1,15 @@
 .container {
   height: 200px;
   width: 300px;
-  background: var(--bg);
-  filter: brightness(80%);
+  background: var(--block-bg);
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
-  transition: background-color .3s ease-in-out;
+  transition: background-color var(--animation), filter var(--animation);
+  &:hover {
+    filter: brightness(var(--brightness));
+  }
 }
