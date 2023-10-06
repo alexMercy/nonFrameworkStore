@@ -4,10 +4,12 @@ import { LANGUAGES, t } from '../../translations';
 import { Dropdown, Option } from '../uikit/dropdown';
 import style from './header.module.scss';
 import { store } from '../../store/core';
+import { Button } from '../uikit/button';
+import { Switch } from '../uikit/switch';
 
 const template = `
-          <button data-button="theme">${t('Toggle theme')}</button>
-          <button data-button="home">${t('Home')}</button>
+          <div data-button="theme"></div>
+          <button data-button="home"></button>
           <div data-component="langPicker"></div>
           
 `;
@@ -31,15 +33,19 @@ export class Header extends Component {
   mountComponents() {
     this.elements[ELEMENT_KEYS.component] = getElements(this.root, ELEMENT_KEYS.component);
     const { langPicker } = this.elements[ELEMENT_KEYS.component];
+
+    this.elements[ELEMENT_KEYS.button] = getElements(this.root, ELEMENT_KEYS.button);
+    const { theme, home } = this.elements[ELEMENT_KEYS.button];
+
     const options: Option[] = Object.keys(LANGUAGES).map(value => ({ label: LANGUAGES[value], value }));
 
     new Dropdown(langPicker, 'Language', options, this.onLangSelect, style).render();
+    new Switch(theme, this.toggleTheme, localStorage.getItem('theme') === 'light').render();
+    new Button(home, t('Home')).render();
   }
   addEventListeners() {
     this.elements[ELEMENT_KEYS.button] = getElements(this.root, ELEMENT_KEYS.button);
-    this.elements[ELEMENT_KEYS.select] = getElements(this.root, ELEMENT_KEYS.select);
-    const { theme, home } = this.elements[ELEMENT_KEYS.button];
-    theme.addEventListener('click', this.toggleTheme);
+    const { home } = this.elements[ELEMENT_KEYS.button];
     home.addEventListener('click', this.goToHome);
   }
 

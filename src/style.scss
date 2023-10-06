@@ -20,6 +20,19 @@
   --brightness: 90%;
 }
 
+button {
+  background-color: var(--block-bg);
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text);
+  transition: var(--animation-text), background-color var(--animation);
+  cursor: pointer;
+  height: 30px;
+  line-height: 30px;
+  border: none;
+  border-radius: var(--border-radius);
+}
+
 .dark_mode {
   --body: black;
   --block-bg: #333333;

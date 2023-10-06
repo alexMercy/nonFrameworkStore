@@ -14,7 +14,7 @@
 
 .outlet {
   margin: var(--outlet-padding) 0;
-  border-radius: 30px;
+  border-radius: 10px;
   height: calc(100% - var(--header-height) - 2 * var(--outlet-padding));
   background: var(--bg);
   transition: background-color var(--animation);
@@ -28,5 +28,5 @@
   height: var(--header-height);
   background: var(--bg);
   transition: background-color var(--animation);
-  border-radius: 0 0 30px 30px;
+  border-radius: 0 0 10px 10px;
 }

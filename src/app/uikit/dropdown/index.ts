@@ -55,8 +55,12 @@ export class Dropdown extends Component {
     const { ops, button } = this.elements[ELEMENT_KEYS.element];
     button.classList.toggle(defStyles.buttonHover);
     this.styles?.buttonHover && button.classList.toggle(this.styles.buttonHover);
+    button.classList.toggle(defStyles.expand);
     ops.classList.toggle(defStyles.expand);
-    this.styles?.expand && ops.classList.toggle(this.styles.expand);
+    if (this.styles?.expand) {
+      button.classList.toggle(this.styles.expand);
+      ops.classList.toggle(this.styles.expand);
+    }
   };
 
   onClick = (e: Event): void => {
