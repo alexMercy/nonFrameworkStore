@@ -7,7 +7,7 @@ import s from './index.module.scss';
 
 const menu: { label: string; url: string; id: string }[] = [
   { label: t('Pizza'), url: '/pizza', id: 'pizza' },
-  { label: t('Sushi'), url: '/sushi', id: 'sushi' },
+  { label: t('Snacks'), url: '/snacks', id: 'snacks' },
 ];
 
 export class HomePage extends Component {

@@ -1,1 +1,7 @@
-  
+.root {
+  min-width: 100px;
+  transition: background-color var(--animation), filter .2s ease-in-out, var(--animation-text);
+  &:hover {
+    filter: brightness(var(--brightness));
+  }
+}

@@ -33,7 +33,7 @@ export const routes: Route[] = [
     },
   },
   {
-    path: '/sushi',
+    path: '/snacks',
     component: (root: HTMLElement) => {
       new PizzasPage(root).render();
     },

@@ -8,10 +8,15 @@ import { Button } from '../uikit/button';
 import { Switch } from '../uikit/switch';
 
 const template = `
-          <div data-button="theme"></div>
-          <button data-button="home"></button>
-          <div data-component="langPicker"></div>
-          
+  <div class='${style.col}'>
+    <button data-button="home"></button>
+    <button data-button="pizzas"></button>
+  </div>       
+  <div></div>
+  <div class='${style.right}'>
+    <div data-button="theme"></div>
+    <div data-component="langPicker"></div>
+  </div>        
 `;
 
 export class Header extends Component {
@@ -35,22 +40,29 @@ export class Header extends Component {
     const { langPicker } = this.elements[ELEMENT_KEYS.component];
 
     this.elements[ELEMENT_KEYS.button] = getElements(this.root, ELEMENT_KEYS.button);
-    const { theme, home } = this.elements[ELEMENT_KEYS.button];
+    const { theme, home, pizzas } = this.elements[ELEMENT_KEYS.button];
 
     const options: Option[] = Object.keys(LANGUAGES).map(value => ({ label: LANGUAGES[value], value }));
 
     new Dropdown(langPicker, 'Language', options, this.onLangSelect, style).render();
     new Switch(theme, this.toggleTheme, localStorage.getItem('theme') === 'light').render();
     new Button(home, t('Home')).render();
+    new Button(pizzas, t('Pizzas')).render();
   }
   addEventListeners() {
     this.elements[ELEMENT_KEYS.button] = getElements(this.root, ELEMENT_KEYS.button);
-    const { home } = this.elements[ELEMENT_KEYS.button];
+    const { home, pizzas } = this.elements[ELEMENT_KEYS.button];
     home.addEventListener('click', this.goToHome);
+    pizzas.addEventListener('click', this.goToPizzas);
   }
 
   goToHome = () => {
     history.pushState({}, '', '/home');
+    window.dispatchEvent(new Event('popstate'));
+  };
+
+  goToPizzas = () => {
+    history.pushState({}, '', '/pizza');
     window.dispatchEvent(new Event('popstate'));
   };
 

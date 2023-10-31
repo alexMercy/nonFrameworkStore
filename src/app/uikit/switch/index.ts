@@ -14,7 +14,12 @@ export class Switch extends Component {
   }
   render(): void {
     this.root.innerHTML = `
-    <label class="${styles.switch}">
+    <label class="${styles.switch}" 
+           style=' --switch-h: 30px;
+                   --switch-w: 60px;
+                   --switch-toggler: 22px;
+                   --switch-left: 6px; 
+           '>
       <input type="checkbox" ${this.checked ? 'checked' : ''}>
       <span class="${styles.slider} ${styles.round}"></span>
     </label>
